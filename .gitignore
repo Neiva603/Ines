@@ -1,0 +1,7 @@
+.env
+venv/
+__pycache__/
+*.pyc
+data/contactos_enviados.json
+logs/*.log
+.DS_Store
