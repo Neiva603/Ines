@@ -11,6 +11,9 @@ export const ROUTES = {
   quotes: '/quotes',
   quoteNew: '/quotes/new',
   quote: (id: string) => `/quotes/${id}`,
+  quoteRequests: '/quotes/requests',
+  quoteRequest: (id: string) => `/quotes/requests/${id}`,
+  publicRequest: '/pedir-orcamento',
   settings: '/settings',
 } as const
 
@@ -60,3 +63,25 @@ export const DEFAULT_QUOTE_VALID_DAYS = 30
 
 export const SUPPORTED_CURRENCIES = ['EUR', 'USD', 'GBP'] as const
 export type SupportedCurrency = (typeof SUPPORTED_CURRENCIES)[number]
+
+// ─── Quote Request statuses ───────────────────────────────────────────────────
+
+export const REQUEST_STATUS_LABELS = {
+  pending:   'Novo',
+  reviewing: 'Em revisão',
+  approved:  'Aprovado',
+  sent:      'Enviado',
+  rejected:  'Rejeitado',
+} as const
+
+export const REQUEST_STATUS_COLORS = {
+  pending:   'bg-yellow-100 text-yellow-700',
+  reviewing: 'bg-blue-100 text-blue-700',
+  approved:  'bg-green-100 text-green-700',
+  sent:      'bg-gray-100 text-gray-600',
+  rejected:  'bg-red-100 text-red-700',
+} as const
+
+// ─── VAT rates (Portugal) ─────────────────────────────────────────────────────
+
+export const VAT_RATES = [0, 6, 13, 23] as const

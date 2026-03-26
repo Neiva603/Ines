@@ -91,7 +91,7 @@ export type Database = {
           created_at: string
           updated_at: string
           user_id: string
-          contact_id: string
+          contact_id: string | null
           title: string
           description: string | null
           status: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired'
@@ -102,13 +102,15 @@ export type Database = {
           ai_prompt: string | null
           line_items: LineItem[]
           notes: string | null
+          quote_request_id: string | null
+          generated_by_ai: boolean
         }
         Insert: {
           id?: string
           created_at?: string
           updated_at?: string
           user_id: string
-          contact_id: string
+          contact_id?: string | null
           title: string
           description?: string | null
           status?: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired'
@@ -119,13 +121,15 @@ export type Database = {
           ai_prompt?: string | null
           line_items?: LineItem[]
           notes?: string | null
+          quote_request_id?: string | null
+          generated_by_ai?: boolean
         }
         Update: {
           id?: string
           created_at?: string
           updated_at?: string
           user_id?: string
-          contact_id?: string
+          contact_id?: string | null
           title?: string
           description?: string | null
           status?: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired'
@@ -136,6 +140,49 @@ export type Database = {
           ai_prompt?: string | null
           line_items?: LineItem[]
           notes?: string | null
+          quote_request_id?: string | null
+          generated_by_ai?: boolean
+        }
+      }
+      quote_requests: {
+        Row: {
+          id: string
+          created_at: string
+          updated_at: string
+          user_id: string | null
+          client_name: string
+          client_email: string | null
+          client_phone: string | null
+          client_company: string | null
+          request_text: string
+          status: 'pending' | 'reviewing' | 'approved' | 'sent' | 'rejected'
+          rejection_reason: string | null
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          user_id?: string | null
+          client_name: string
+          client_email?: string | null
+          client_phone?: string | null
+          client_company?: string | null
+          request_text: string
+          status?: 'pending' | 'reviewing' | 'approved' | 'sent' | 'rejected'
+          rejection_reason?: string | null
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          user_id?: string | null
+          client_name?: string
+          client_email?: string | null
+          client_phone?: string | null
+          client_company?: string | null
+          request_text?: string
+          status?: 'pending' | 'reviewing' | 'approved' | 'sent' | 'rejected'
+          rejection_reason?: string | null
         }
       }
     }
@@ -145,6 +192,7 @@ export type Database = {
       contact_status: 'lead' | 'prospect' | 'customer' | 'churned'
       quote_status: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired'
       user_role: 'admin' | 'sales' | 'viewer'
+      request_status: 'pending' | 'reviewing' | 'approved' | 'sent' | 'rejected'
     }
   }
 }

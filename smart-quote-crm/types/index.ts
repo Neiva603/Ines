@@ -17,6 +17,15 @@ export type {
   ContactFilters,
   QuoteFilters,
 } from './api'
+export type {
+  QuoteRequest,
+  QuoteRequestInsert,
+  QuoteRequestUpdate,
+  QuoteRequestStatus,
+  QuoteItem,
+  QuoteEditorState,
+  GenerateQuoteFromRequestResponse,
+} from './quote-requests'
 
 // ─── UI-specific types ───────────────────────────────────────────────────────
 
