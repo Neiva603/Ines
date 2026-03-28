@@ -12,6 +12,19 @@
 </head>
 <body>
 
+  <!-- CINEMATIC INTRO OVERLAY -->
+  <div id="intro-overlay" aria-hidden="true">
+    <div class="intro-content">
+      <div class="intro-logo">
+        <span class="logo-invite">invite</span><span class="logo-dot">·</span><span class="logo-studio">studio</span>
+      </div>
+      <p class="intro-tagline" data-pt="momentos que ficam para sempre" data-en="moments that last forever">momentos que ficam para sempre</p>
+    </div>
+  </div>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
   <!-- NAV -->
   <nav id="navbar">
     <div class="nav-inner">
@@ -53,19 +66,19 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-left">
-      <div class="hero-tag reveal" data-pt="convites digitais · Portugal" data-en="digital invitations · Portugal">convites digitais · Portugal</div>
-      <h1 class="hero-title reveal">
+      <div class="hero-tag reveal-blur" data-pt="convites digitais · Portugal" data-en="digital invitations · Portugal">convites digitais · Portugal</div>
+      <h1 class="hero-title reveal-blur">
         <span data-pt="Momentos que" data-en="Moments worth">Momentos que</span><br />
         <em data-pt="ficam para sempre" data-en="remembering forever">ficam para sempre</em>
       </h1>
-      <p class="hero-sub reveal" data-pt="Convites digitais para casamentos, aniversários e batizados. Design moderno, RSVP incluído, partilha em segundos." data-en="Digital invitations for weddings, birthdays and christenings. Modern design, RSVP included, share in seconds.">
+      <p class="hero-sub reveal-blur" data-pt="Convites digitais para casamentos, aniversários e batizados. Design moderno, RSVP incluído, partilha em segundos." data-en="Digital invitations for weddings, birthdays and christenings. Modern design, RSVP included, share in seconds.">
         Convites digitais para casamentos, aniversários e batizados. Design moderno, RSVP incluído, partilha em segundos.
       </p>
-      <div class="hero-ctas reveal">
+      <div class="hero-ctas reveal-blur">
         <a href="#templates" class="btn btn-primary" data-pt="Ver Templates" data-en="Browse Templates">Ver Templates</a>
         <a href="#como-funciona" class="btn btn-ghost" data-pt="Como funciona" data-en="How it works">Como funciona</a>
       </div>
-      <div class="hero-proof reveal">
+      <div class="hero-proof reveal-blur">
         <div class="proof-avatars">
           <div class="avatar" style="background:#A8C5AE">MR</div>
           <div class="avatar" style="background:#85A98C">SP</div>
@@ -75,7 +88,7 @@
         <p><strong>+1 200</strong> <span data-pt="eventos criados este ano" data-en="events created this year">eventos criados este ano</span></p>
       </div>
     </div>
-    <div class="hero-right reveal">
+    <div class="hero-right reveal-scale">
       <div class="hero-card">
         <div class="card-inner">
           <div class="card-label" data-pt="pré-visualização" data-en="preview">pré-visualização</div>
@@ -100,6 +113,13 @@
       <div class="hero-float hf-2"><span>🕊️</span> <span data-pt="Batizado" data-en="Christening">Batizado</span></div>
     </div>
   </section>
+
+  <!-- CHAPTER BREAK — Opening breath -->
+  <div class="chapter-break" aria-hidden="true">
+    <span class="chapter-line"></span>
+    <span class="chapter-mark">◌</span>
+    <span class="chapter-line"></span>
+  </div>
 
   <!-- SERVIÇOS -->
   <section id="servicos">
@@ -302,7 +322,7 @@
         <h2 data-pt="Histórias reais" data-en="Real stories">Histórias reais</h2>
       </div>
       <div class="testi-grid">
-        <div class="testi reveal">
+        <div class="testi reveal-scale">
           <div class="testi-stars">★★★★★</div>
           <blockquote>"<span data-pt="Ficámos apaixonados pelo resultado. Os convidados acharam que tínhamos contratado um designer profissional!" data-en="We fell in love with the result. Guests thought we had hired a professional designer!">Ficámos apaixonados pelo resultado. Os convidados acharam que tínhamos contratado um designer profissional!</span>"</blockquote>
           <div class="testi-author">
@@ -310,7 +330,7 @@
             <div><strong>Sara &amp; Rui</strong><span data-pt="Casamento · Junho 2024" data-en="Wedding · June 2024">Casamento · Junho 2024</span></div>
           </div>
         </div>
-        <div class="testi reveal">
+        <div class="testi reveal-scale">
           <div class="testi-stars">★★★★★</div>
           <blockquote>"<span data-pt="Usei para o aniversário da minha filha e foi um sucesso. Super simples de criar e os convidados adoraram!" data-en="Used it for my daughter's birthday and it was a hit. Super easy to create and guests loved it!">Usei para o aniversário da minha filha e foi um sucesso. Super simples de criar e os convidados adoraram!</span>"</blockquote>
           <div class="testi-author">
@@ -318,7 +338,7 @@
             <div><strong>Marta C.</strong><span data-pt="Aniversário · Abril 2024" data-en="Birthday · April 2024">Aniversário · Abril 2024</span></div>
           </div>
         </div>
-        <div class="testi reveal">
+        <div class="testi reveal-scale">
           <div class="testi-stars">★★★★★</div>
           <blockquote>"<span data-pt="O convite do batizado ficou uma obra de arte. Todos pediram o link para guardar como recordação." data-en="The christening invitation was a work of art. Everyone asked for the link to keep as a memento.">O convite do batizado ficou uma obra de arte. Todos pediram o link para guardar como recordação.</span>"</blockquote>
           <div class="testi-author">
@@ -329,6 +349,13 @@
       </div>
     </div>
   </section>
+
+  <!-- CHAPTER BREAK — Emotional pause -->
+  <div class="chapter-break" aria-hidden="true">
+    <span class="chapter-line"></span>
+    <span class="chapter-mark">◌</span>
+    <span class="chapter-line"></span>
+  </div>
 
   <!-- PREÇOS -->
   <section id="precos" class="section-alt">
@@ -388,6 +415,12 @@
       <p class="p-guarantee reveal" data-pt="✓ Garantia de 7 dias — se não ficares satisfeito, devolvemos o dinheiro" data-en="✓ 7-day guarantee — if you're not satisfied, we'll refund you">✓ Garantia de 7 dias — se não ficares satisfeito, devolvemos o dinheiro</p>
     </div>
   </section>
+
+  <!-- INTERLUDE — The closing monologue -->
+  <div class="interlude">
+    <p class="interlude-text reveal-blur" data-pt="O teu momento merece ser inesquecível." data-en="Your moment deserves to be unforgettable.">O teu momento merece ser inesquecível.</p>
+    <p class="interlude-sub reveal-blur" data-pt="cada convite, uma história única" data-en="every invitation, a unique story">cada convite, uma história única</p>
+  </div>
 
   <!-- CTA FINAL -->
   <section id="cta">
