@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt" data-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invite Studio — Convites Digitais para Momentos Especiais</title>
+  <meta name="description" content="Convites digitais modernos para casamentos, aniversários e batizados. Design exclusivo, RSVP online e gestão de convidados." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- CINEMATIC INTRO OVERLAY -->
+  <div id="intro-overlay" aria-hidden="true">
+    <div class="intro-content">
+      <div class="intro-logo">
+        <span class="logo-invite">invite</span><span class="logo-dot">·</span><span class="logo-studio">studio</span>
+      </div>
+      <p class="intro-tagline" data-pt="momentos que ficam para sempre" data-en="moments that last forever">momentos que ficam para sempre</p>
+    </div>
+  </div>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-invite">invite</span><span class="logo-dot">·</span><span class="logo-studio">studio</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#servicos"      data-pt="Serviços"       data-en="Services">Serviços</a></li>
+        <li><a href="#como-funciona" data-pt="Como Funciona"  data-en="How It Works">Como Funciona</a></li>
+        <li><a href="#templates"     data-pt="Templates"      data-en="Templates">Templates</a></li>
+        <li><a href="#precos"        data-pt="Preços"         data-en="Pricing">Preços</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+          <span class="lang-pt active">PT</span><span class="lang-sep">/</span><span class="lang-en">EN</span>
+        </button>
+        <a href="#precos" class="btn btn-nav" data-pt="Começar" data-en="Get Started">Começar</a>
+      </div>
+      <button class="nav-toggle-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile">
+      <ul>
+        <li><a href="#servicos"      data-pt="Serviços"      data-en="Services">Serviços</a></li>
+        <li><a href="#como-funciona" data-pt="Como Funciona" data-en="How It Works">Como Funciona</a></li>
+        <li><a href="#templates"     data-pt="Templates"     data-en="Templates">Templates</a></li>
+        <li><a href="#precos"        data-pt="Preços"        data-en="Pricing">Preços</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <button class="lang-toggle" id="langToggleMobile">
+          <span class="lang-pt active">PT</span><span class="lang-sep">/</span><span class="lang-en">EN</span>
+        </button>
+        <a href="#precos" class="btn btn-primary" data-pt="Começar" data-en="Get Started">Começar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-tag reveal-blur" data-pt="convites digitais · Portugal" data-en="digital invitations · Portugal">convites digitais · Portugal</div>
+      <h1 class="hero-title reveal-blur">
+        <span data-pt="Momentos que" data-en="Moments worth">Momentos que</span><br />
+        <em data-pt="ficam para sempre" data-en="remembering forever">ficam para sempre</em>
+      </h1>
+      <p class="hero-sub reveal-blur" data-pt="Convites digitais para casamentos, aniversários e batizados. Design moderno, RSVP incluído, partilha em segundos." data-en="Digital invitations for weddings, birthdays and christenings. Modern design, RSVP included, share in seconds.">
+        Convites digitais para casamentos, aniversários e batizados. Design moderno, RSVP incluído, partilha em segundos.
+      </p>
+      <div class="hero-ctas reveal-blur">
+        <a href="#templates" class="btn btn-primary" data-pt="Ver Templates" data-en="Browse Templates">Ver Templates</a>
+        <a href="#como-funciona" class="btn btn-ghost" data-pt="Como funciona" data-en="How it works">Como funciona</a>
+      </div>
+      <div class="hero-proof reveal-blur">
+        <div class="proof-avatars">
+          <div class="avatar" style="background:#A8C5AE">MR</div>
+          <div class="avatar" style="background:#85A98C">SP</div>
+          <div class="avatar" style="background:#6B8F71">TC</div>
+          <div class="avatar" style="background:#5A7B60">AF</div>
+        </div>
+        <p><strong>+1 200</strong> <span data-pt="eventos criados este ano" data-en="events created this year">eventos criados este ano</span></p>
+      </div>
+    </div>
+    <div class="hero-right reveal-scale">
+      <div class="hero-card">
+        <div class="card-inner">
+          <div class="card-label" data-pt="pré-visualização" data-en="preview">pré-visualização</div>
+          <div class="card-event-type" data-pt="Casamento" data-en="Wedding">Casamento</div>
+          <div class="card-names">Ana &amp; Miguel</div>
+          <div class="card-date">28 · VI · 2025</div>
+          <div class="card-location">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1C4.07 1 2.5 2.57 2.5 4.5c0 2.81 3.5 6.5 3.5 6.5s3.5-3.69 3.5-6.5C9.5 2.57 7.93 1 6 1z" stroke="currentColor" stroke-width="1.2"/></svg>
+            Quinta da Aveleda, Porto
+          </div>
+          <div class="card-rsvp">
+            <div class="rsvp-bar"><div class="rsvp-fill" style="width:73%"></div></div>
+            <span data-pt="73 confirmados" data-en="73 confirmed">73 confirmados</span>
+          </div>
+          <div class="card-badge">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5l1.5 3 3.3.5-2.4 2.3.6 3.2L7 9l-3 1.5.6-3.2L2.2 5l3.3-.5L7 1.5z" fill="currentColor"/></svg>
+            <span data-pt="RSVP activo" data-en="RSVP active">RSVP activo</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float hf-1"><span>🎂</span> <span data-pt="Aniversário" data-en="Birthday">Aniversário</span></div>
+      <div class="hero-float hf-2"><span>🕊️</span> <span data-pt="Batizado" data-en="Christening">Batizado</span></div>
+    </div>
+  </section>
+
+  <!-- CHAPTER BREAK — Opening breath -->
+  <div class="chapter-break" aria-hidden="true">
+    <span class="chapter-line"></span>
+    <span class="chapter-mark">◌</span>
+    <span class="chapter-line"></span>
+  </div>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-pt="o que fazemos" data-en="what we do">o que fazemos</span>
+        <h2 data-pt="Para cada momento especial" data-en="For every special moment">Para cada momento especial</h2>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <div class="svc-icon">💍</div>
+          <h3 data-pt="Casamentos" data-en="Weddings">Casamentos</h3>
+          <p data-pt="Convites elegantes com RSVP, mapa, música e galeria. Tudo o que o vosso dia merece." data-en="Elegant invitations with RSVP, map, music and gallery. Everything your day deserves.">Convites elegantes com RSVP, mapa, música e galeria. Tudo o que o vosso dia merece.</p>
+          <a href="#templates" class="svc-link" data-pt="Ver templates →" data-en="View templates →">Ver templates →</a>
+        </div>
+        <div class="svc-card svc-mid reveal">
+          <div class="svc-new" data-pt="Novo" data-en="New">Novo</div>
+          <div class="svc-icon">🎂</div>
+          <h3 data-pt="Aniversários" data-en="Birthdays">Aniversários</h3>
+          <p data-pt="Convites modernos para todas as idades. Do primeiro ao centésimo aniversário." data-en="Modern invitations for all ages. From the first to the hundredth birthday.">Convites modernos para todas as idades. Do primeiro ao centésimo aniversário.</p>
+          <a href="#templates" class="svc-link" data-pt="Ver templates →" data-en="View templates →">Ver templates →</a>
+        </div>
+        <div class="svc-card reveal">
+          <div class="svc-new" data-pt="Novo" data-en="New">Novo</div>
+          <div class="svc-icon">🕊️</div>
+          <h3 data-pt="Batizados" data-en="Christenings">Batizados</h3>
+          <p data-pt="Designs delicados para celebrar a chegada de um novo membro da família." data-en="Delicate designs to celebrate the arrival of a new family member.">Designs delicados para celebrar a chegada de um novo membro da família.</p>
+          <a href="#templates" class="svc-link" data-pt="Ver templates →" data-en="View templates →">Ver templates →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="section-alt">
+    <div class="container">
+      <div class="how-grid">
+        <div class="how-text">
+          <span class="eyebrow reveal" data-pt="simples e rápido" data-en="simple and fast">simples e rápido</span>
+          <h2 class="reveal" data-pt="Pronto em menos de 10 minutos" data-en="Ready in under 10 minutes">Pronto em menos de 10 minutos</h2>
+          <p class="reveal" data-pt="Sem necessidade de designers nem ferramentas técnicas. O Invite Studio trata de tudo." data-en="No designers or technical tools needed. Invite Studio handles everything.">Sem necessidade de designers nem ferramentas técnicas. O Invite Studio trata de tudo.</p>
+          <a href="#precos" class="btn btn-primary reveal" data-pt="Criar o meu convite" data-en="Create my invitation">Criar o meu convite</a>
+        </div>
+        <div class="how-steps">
+          <div class="how-step reveal">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4 data-pt="Escolhe o evento e o design" data-en="Choose your event and design">Escolhe o evento e o design</h4>
+              <p data-pt="Casamento, aniversário ou batizado — escolhe o template que mais te representa." data-en="Wedding, birthday or christening — pick the template that represents you.">Casamento, aniversário ou batizado — escolhe o template que mais te representa.</p>
+            </div>
+          </div>
+          <div class="how-step reveal">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4 data-pt="Personaliza ao teu gosto" data-en="Personalise to your taste">Personaliza ao teu gosto</h4>
+              <p data-pt="Adiciona nome, data, local, fotos e música. Tudo editável em tempo real." data-en="Add names, date, venue, photos and music. All editable in real time.">Adiciona nome, data, local, fotos e música. Tudo editável em tempo real.</p>
+            </div>
+          </div>
+          <div class="how-step reveal">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4 data-pt="Partilha e gere os convidados" data-en="Share and manage guests">Partilha e gere os convidados</h4>
+              <p data-pt="Envia por WhatsApp, email ou redes sociais. Acompanha as confirmações em tempo real." data-en="Send via WhatsApp, email or social media. Track RSVPs in real time.">Envia por WhatsApp, email ou redes sociais. Acompanha as confirmações em tempo real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section id="templates">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-pt="designs exclusivos" data-en="exclusive designs">designs exclusivos</span>
+        <h2 data-pt="Templates para cada ocasião" data-en="Templates for every occasion">Templates para cada ocasião</h2>
+      </div>
+      <div class="templates-filter reveal">
+        <button class="f-btn active" data-filter="all"         data-pt="Todos"       data-en="All">Todos</button>
+        <button class="f-btn"        data-filter="casamento"   data-pt="Casamento"   data-en="Wedding">Casamento</button>
+        <button class="f-btn"        data-filter="aniversario" data-pt="Aniversário" data-en="Birthday">Aniversário</button>
+        <button class="f-btn"        data-filter="batizado"    data-pt="Batizado"    data-en="Christening">Batizado</button>
+      </div>
+      <div class="templates-grid">
+        <div class="t-card reveal" data-cat="casamento">
+          <div class="t-preview tp-sage">
+            <div class="t-mock"><div class="t-ornament">◌</div><div class="t-names">Ana &amp; Miguel</div><div class="t-date">28 · VI · 2025</div><div class="t-place">Porto</div></div>
+          </div>
+          <div class="t-info">
+            <div><span class="t-tag" data-pt="Casamento" data-en="Wedding">Casamento</span><h4>Sage Garden</h4></div>
+            <a href="#precos" class="t-cta" data-pt="Usar →" data-en="Use →">Usar →</a>
+          </div>
+        </div>
+        <div class="t-card reveal" data-cat="casamento">
+          <div class="t-preview tp-noir">
+            <div class="t-mock tp-light"><div class="t-ornament">—</div><div class="t-names">Sofia &amp; João</div><div class="t-date">05 · IX · 2025</div><div class="t-place">Lisboa</div></div>
+          </div>
+          <div class="t-info">
+            <div><span class="t-tag" data-pt="Casamento" data-en="Wedding">Casamento</span><h4>Noir Minimal</h4></div>
+            <a href="#precos" class="t-cta" data-pt="Usar →" data-en="Use →">Usar →</a>
+          </div>
+        </div>
+        <div class="t-card reveal" data-cat="casamento">
+          <div class="t-preview tp-terra">
+            <div class="t-mock"><div class="t-ornament">✦</div><div class="t-names">Inês &amp; Tomás</div><div class="t-date">14 · VIII · 2025</div><div class="t-place">Évora</div></div>
+          </div>
+          <div class="t-info">
+            <div><span class="t-tag" data-pt="Casamento" data-en="Wedding">Casamento</span><h4>Terra Nova</h4></div>
+            <a href="#precos" class="t-cta" data-pt="Usar →" data-en="Use →">Usar →</a>
+          </div>
+        </div>
+        <div class="t-card reveal" data-cat="aniversario">
+          <div class="t-preview tp-confetti">
+            <div class="t-mock tp-light"><div class="t-ornament">🎉</div><div class="t-names">Maria faz 30!</div><div class="t-date">12 · IV · 2025</div><div class="t-place">Lisboa</div></div>
+          </div>
+          <div class="t-info">
+            <div><span class="t-tag" data-pt="Aniversário" data-en="Birthday">Aniversário</span><h4>Confetti Party</h4></div>
+            <a href="#precos" class="t-cta" data-pt="Usar →" data-en="Use →">Usar →</a>
+          </div>
+        </div>
+        <div class="t-card reveal" data-cat="aniversario">
+          <div class="t-preview tp-verde">
+            <div class="t-mock"><div class="t-ornament">◆</div><div class="t-names">Pedro — 1 ano</div><div class="t-date">03 · V · 2025</div><div class="t-place">Porto</div></div>
+          </div>
+          <div class="t-info">
+            <div><span class="t-tag" data-pt="Aniversário" data-en="Birthday">Aniversário</span><h4>First Year</h4></div>
+            <a href="#precos" class="t-cta" data-pt="Usar →" data-en="Use →">Usar →</a>
+          </div>
+        </div>
+        <div class="t-card reveal" data-cat="batizado">
+          <div class="t-preview tp-cloud">
+            <div class="t-mock"><div class="t-ornament">✿</div><div class="t-names">Batizado da Beatriz</div><div class="t-date">21 · VI · 2025</div><div class="t-place">Braga</div></div>
+          </div>
+          <div class="t-info">
+            <div><span class="t-tag" data-pt="Batizado" data-en="Christening">Batizado</span><h4>Cloud Soft</h4></div>
+            <a href="#precos" class="t-cta" data-pt="Usar →" data-en="Use →">Usar →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES -->
+  <section id="funcionalidades" class="section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-pt="tudo incluído" data-en="everything included">tudo incluído</span>
+        <h2 data-pt="Uma plataforma, tudo dentro" data-en="One platform, everything inside">Uma plataforma, tudo dentro</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3C8.82 3 3 8.82 3 16s5.82 13 13 13 13-5.82 13-13S23.18 3 16 3z" stroke="currentColor" stroke-width="1.3"/><path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4 data-pt="RSVP Online" data-en="Online RSVP">RSVP Online</h4>
+          <p data-pt="Confirmações automáticas. Sem papel, sem telefonemas." data-en="Automatic confirmations. No paper, no phone calls.">Confirmações automáticas. Sem papel, sem telefonemas.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 14h24M10 5v3M22 5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+          <h4 data-pt="Gestão de Convidados" data-en="Guest Management">Gestão de Convidados</h4>
+          <p data-pt="Lista em tempo real. Exporta para Excel com um clique." data-en="Real-time list. Export to Excel in one click.">Lista em tempo real. Exporta para Excel com um clique.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4C11 4 7 8 7 13c0 7.5 9 15 9 15s9-7.5 9-15c0-5-4-9-9-9z" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="13" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg></div>
+          <h4 data-pt="Mapa Interactivo" data-en="Interactive Map">Mapa Interactivo</h4>
+          <p data-pt="Local da cerimónia e da festa. GPS abre com um toque." data-en="Ceremony and party venue. GPS opens with one tap.">Local da cerimónia e da festa. GPS abre com um toque.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.3"/><path d="M13 11l8 5-8 5V11z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <h4 data-pt="Música Personalizada" data-en="Custom Music">Música Personalizada</h4>
+          <p data-pt="A vossa canção especial toca enquanto os convidados lêem." data-en="Your special song plays as guests read the invitation.">A vossa canção especial toca enquanto os convidados lêem.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="2" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="14" r="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M4 26l8-7 5 5 3-3 8 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4 data-pt="Galeria de Fotos" data-en="Photo Gallery">Galeria de Fotos</h4>
+          <p data-pt="Partilha os teus momentos favoritos dentro do convite." data-en="Share your favourite moments inside the invitation.">Partilha os teus momentos favoritos dentro do convite.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><rect x="9" y="3" width="14" height="26" rx="3" stroke="currentColor" stroke-width="1.3"/><path d="M14 24h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <h4 data-pt="100% Mobile" data-en="100% Mobile">100% Mobile</h4>
+          <p data-pt="Perfeito em qualquer dispositivo. Sem instalações, sem app." data-en="Perfect on any device. No installs, no app.">Perfeito em qualquer dispositivo. Sem instalações, sem app.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4l2.5 8H27l-7 5 2.5 8-7-5-7 5 2.5-8-7-5h8.5L16 4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <h4 data-pt="Link Exclusivo" data-en="Exclusive Link">Link Exclusivo</h4>
+          <p data-pt="O teu convite no teu próprio link. Fácil de partilhar em qualquer plataforma." data-en="Your invitation on your own link. Easy to share on any platform.">O teu convite no teu próprio link. Fácil de partilhar em qualquer plataforma.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="feat-icon"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.3"/><path d="M10 16h12M16 10v12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+          <h4 data-pt="Bilingue PT / EN" data-en="Bilingual PT / EN">Bilingue PT / EN</h4>
+          <p data-pt="Convites em português e inglês. Perfeito para convidados internacionais." data-en="Invitations in Portuguese and English. Perfect for international guests.">Convites em português e inglês. Perfeito para convidados internacionais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTEMUNHOS -->
+  <section id="testemunhos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-pt="o que dizem" data-en="what they say">o que dizem</span>
+        <h2 data-pt="Histórias reais" data-en="Real stories">Histórias reais</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi reveal-scale">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"<span data-pt="Ficámos apaixonados pelo resultado. Os convidados acharam que tínhamos contratado um designer profissional!" data-en="We fell in love with the result. Guests thought we had hired a professional designer!">Ficámos apaixonados pelo resultado. Os convidados acharam que tínhamos contratado um designer profissional!</span>"</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background:#A8C5AE">SR</div>
+            <div><strong>Sara &amp; Rui</strong><span data-pt="Casamento · Junho 2024" data-en="Wedding · June 2024">Casamento · Junho 2024</span></div>
+          </div>
+        </div>
+        <div class="testi reveal-scale">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"<span data-pt="Usei para o aniversário da minha filha e foi um sucesso. Super simples de criar e os convidados adoraram!" data-en="Used it for my daughter's birthday and it was a hit. Super easy to create and guests loved it!">Usei para o aniversário da minha filha e foi um sucesso. Super simples de criar e os convidados adoraram!</span>"</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background:#85A98C">MC</div>
+            <div><strong>Marta C.</strong><span data-pt="Aniversário · Abril 2024" data-en="Birthday · April 2024">Aniversário · Abril 2024</span></div>
+          </div>
+        </div>
+        <div class="testi reveal-scale">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"<span data-pt="O convite do batizado ficou uma obra de arte. Todos pediram o link para guardar como recordação." data-en="The christening invitation was a work of art. Everyone asked for the link to keep as a memento.">O convite do batizado ficou uma obra de arte. Todos pediram o link para guardar como recordação.</span>"</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background:#6B8F71">FP</div>
+            <div><strong>Filipa &amp; Paulo</strong><span data-pt="Batizado · Setembro 2024" data-en="Christening · September 2024">Batizado · Setembro 2024</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER BREAK — Emotional pause -->
+  <div class="chapter-break" aria-hidden="true">
+    <span class="chapter-line"></span>
+    <span class="chapter-mark">◌</span>
+    <span class="chapter-line"></span>
+  </div>
+
+  <!-- PREÇOS -->
+  <section id="precos" class="section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow" data-pt="transparente e simples" data-en="transparent and simple">transparente e simples</span>
+        <h2 data-pt="Pagamento único. Sem surpresas." data-en="One-time payment. No surprises.">Pagamento único. Sem surpresas.</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="p-card reveal">
+          <h3 data-pt="Essencial" data-en="Essential">Essencial</h3>
+          <div class="p-price">39<span>€</span></div>
+          <p class="p-note" data-pt="pagamento único" data-en="one-time payment">pagamento único</p>
+          <ul class="p-list">
+            <li data-pt="1 template à escolha"  data-en="1 template of your choice">1 template à escolha</li>
+            <li data-pt="RSVP ilimitado"         data-en="Unlimited RSVP">RSVP ilimitado</li>
+            <li data-pt="Lista de convidados"    data-en="Guest list">Lista de convidados</li>
+            <li data-pt="Mapa do local"          data-en="Venue map">Mapa do local</li>
+            <li data-pt="Link personalizado"     data-en="Custom link">Link personalizado</li>
+            <li class="p-no" data-pt="Música de fundo"   data-en="Background music">Música de fundo</li>
+            <li class="p-no" data-pt="Galeria de fotos"  data-en="Photo gallery">Galeria de fotos</li>
+          </ul>
+          <a href="#" class="btn btn-outline w-full" data-pt="Escolher Essencial" data-en="Choose Essential">Escolher Essencial</a>
+        </div>
+        <div class="p-card p-feat reveal">
+          <div class="p-best" data-pt="Mais popular" data-en="Most popular">Mais popular</div>
+          <h3 data-pt="Completo" data-en="Complete">Completo</h3>
+          <div class="p-price">69<span>€</span></div>
+          <p class="p-note" data-pt="pagamento único" data-en="one-time payment">pagamento único</p>
+          <ul class="p-list">
+            <li data-pt="Todos os templates"    data-en="All templates">Todos os templates</li>
+            <li data-pt="RSVP ilimitado"        data-en="Unlimited RSVP">RSVP ilimitado</li>
+            <li data-pt="Lista de convidados"   data-en="Guest list">Lista de convidados</li>
+            <li data-pt="Mapa do local"         data-en="Venue map">Mapa do local</li>
+            <li data-pt="Link personalizado"    data-en="Custom link">Link personalizado</li>
+            <li data-pt="Música de fundo"       data-en="Background music">Música de fundo</li>
+            <li data-pt="Galeria de fotos"      data-en="Photo gallery">Galeria de fotos</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-full" data-pt="Escolher Completo" data-en="Choose Complete">Escolher Completo</a>
+        </div>
+        <div class="p-card reveal">
+          <h3 data-pt="Premium" data-en="Premium">Premium</h3>
+          <div class="p-price">99<span>€</span></div>
+          <p class="p-note" data-pt="pagamento único" data-en="one-time payment">pagamento único</p>
+          <ul class="p-list">
+            <li data-pt="Design à medida"       data-en="Custom design">Design à medida</li>
+            <li data-pt="RSVP ilimitado"        data-en="Unlimited RSVP">RSVP ilimitado</li>
+            <li data-pt="Lista de convidados"   data-en="Guest list">Lista de convidados</li>
+            <li data-pt="Mapa do local"         data-en="Venue map">Mapa do local</li>
+            <li data-pt="Link personalizado"    data-en="Custom link">Link personalizado</li>
+            <li data-pt="Música de fundo"       data-en="Background music">Música de fundo</li>
+            <li data-pt="Suporte prioritário"   data-en="Priority support">Suporte prioritário</li>
+          </ul>
+          <a href="#" class="btn btn-outline w-full" data-pt="Escolher Premium" data-en="Choose Premium">Escolher Premium</a>
+        </div>
+      </div>
+      <p class="p-guarantee reveal" data-pt="✓ Garantia de 7 dias — se não ficares satisfeito, devolvemos o dinheiro" data-en="✓ 7-day guarantee — if you're not satisfied, we'll refund you">✓ Garantia de 7 dias — se não ficares satisfeito, devolvemos o dinheiro</p>
+    </div>
+  </section>
+
+  <!-- INTERLUDE — The closing monologue -->
+  <div class="interlude">
+    <p class="interlude-text reveal-blur" data-pt="O teu momento merece ser inesquecível." data-en="Your moment deserves to be unforgettable.">O teu momento merece ser inesquecível.</p>
+    <p class="interlude-sub reveal-blur" data-pt="cada convite, uma história única" data-en="every invitation, a unique story">cada convite, uma história única</p>
+  </div>
+
+  <!-- CTA FINAL -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-box reveal">
+        <span class="eyebrow" data-pt="sem compromisso" data-en="no commitment">sem compromisso</span>
+        <h2 data-pt="Pronto para criar o teu convite?" data-en="Ready to create your invitation?">Pronto para criar o teu convite?</h2>
+        <p data-pt="Casamento, aniversário ou batizado — o teu momento merece um convite à altura." data-en="Wedding, birthday or christening — your moment deserves an invitation to match.">Casamento, aniversário ou batizado — o teu momento merece um convite à altura.</p>
+        <div class="cta-btns">
+          <a href="#precos" class="btn btn-primary btn-lg" data-pt="Começar agora" data-en="Start now">Começar agora</a>
+          <a href="mailto:hello@invitestudio.pt" class="btn btn-ghost-white" data-pt="Falar connosco" data-en="Contact us">Falar connosco</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo logo-footer">
+            <span class="logo-invite">invite</span><span class="logo-dot">·</span><span class="logo-studio">studio</span>
+          </a>
+          <p data-pt="Convites digitais para os momentos que ficam para sempre." data-en="Digital invitations for moments that last forever.">Convites digitais para os momentos que ficam para sempre.</p>
+        </div>
+        <div class="footer-links">
+          <h5 data-pt="Produto" data-en="Product">Produto</h5>
+          <ul>
+            <li><a href="#templates"     data-pt="Templates"      data-en="Templates">Templates</a></li>
+            <li><a href="#funcionalidades" data-pt="Funcionalidades" data-en="Features">Funcionalidades</a></li>
+            <li><a href="#precos"        data-pt="Preços"          data-en="Pricing">Preços</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 data-pt="Eventos" data-en="Events">Eventos</h5>
+          <ul>
+            <li><a href="#servicos" data-pt="Casamentos"  data-en="Weddings">Casamentos</a></li>
+            <li><a href="#servicos" data-pt="Aniversários" data-en="Birthdays">Aniversários</a></li>
+            <li><a href="#servicos" data-pt="Batizados"   data-en="Christenings">Batizados</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 data-pt="Empresa" data-en="Company">Empresa</h5>
+          <ul>
+            <li><a href="#" data-pt="Sobre nós" data-en="About us">Sobre nós</a></li>
+            <li><a href="#" data-pt="Blog"      data-en="Blog">Blog</a></li>
+            <li><a href="mailto:hello@invitestudio.pt" data-pt="Contacto" data-en="Contact">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Invite Studio. <span data-pt="Todos os direitos reservados." data-en="All rights reserved.">Todos os direitos reservados.</span></p>
+        <p data-pt="Feito com ♥ em Portugal" data-en="Made with ♥ in Portugal">Feito com ♥ em Portugal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
