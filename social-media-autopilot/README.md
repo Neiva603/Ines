@@ -1,7 +1,8 @@
 # Social Media Autopilot — Reels & TikTok para venda de produtos digitais
 
-Todos os dias, o sistema pega no próximo vídeo da tua fila (~10 segundos) e gera
-automaticamente:
+Nicho activo por omissão: **monetizar páginas de pets com produtos digitais**,
+em inglês (`IDIOMA=en` no `.env`). Todos os dias, o sistema pega no próximo
+vídeo da tua fila (~10 segundos) e gera automaticamente:
 
 - **3 ganchos alternativos** (a frase de abertura que decide se alguém continua a ver)
 - **Legenda pronta para o Instagram Reels** (gancho + contexto + CTA + hashtags)
@@ -34,27 +35,34 @@ bash instalar.sh
 ```
 
 Depois edita o `.env`:
+- `IDIOMA` — `en` (nicho de monetização de páginas de pets, activo por omissão)
+  ou `pt` (produtos digitais em geral, português)
 - `NICHO` e `NOME_PRODUTO` — usados para personalizar os textos
+- `PALAVRA_CHAVE_CTA` — palavra que pedes para comentar (ex.: `PET`)
 - `LINK_BIO` — o teu link (Linktree, checkout, etc.)
 - `SMTP_PASSWORD` — [App Password do Gmail](https://myaccount.google.com/apppasswords), para receberes o email diário
 - `ANTHROPIC_API_KEY` (opcional, recomendado) — sem isto o sistema usa um banco
   de fórmulas de copywriting testadas; com isto, a Claude personaliza o gancho
-  e a legenda ao tema exacto de cada vídeo do dia.
+  e a legenda ao tema exacto de cada vídeo do dia (em qualquer um dos idiomas).
 
 ## Passo 2 — Adicionar vídeos à fila
 
 Um vídeo de cada vez:
 ```bash
 cd src
-python main.py adicionar ~/Videos/video1.mp4 "vendas de ebooks"
+python main.py adicionar ~/Videos/video1.mp4 "training guides"
 ```
 
-> **Sobre o `tema`:** usa uma frase curta tipo substantivo (2-5 palavras) —
-> ex: `"vendas de ebooks"`, `"criação de cursos online"`, `"produtividade para criadores"`.
-> Evita frases completas ou começar por um verbo (`"como vender..."`), porque os
-> ganchos são construídos à volta dessa frase. Se tiveres `ANTHROPIC_API_KEY`
-> configurada, a IA lida bem com qualquer formato — esta regra aplica-se sobretudo
-> ao gerador por templates (usado quando a IA não está configurada).
+> **Sobre o `tema`:** usa uma frase curta tipo substantivo (2-5 palavras) — o
+> ângulo/produto digital que esse vídeo específico aborda. Com `IDIOMA=en`
+> (nicho de pets), ex: `"training guides"`, `"treat recipes"`, `"pet photography
+> presets"`. Com `IDIOMA=pt`, ex: `"vendas de ebooks"`, `"criação de cursos
+> online"`. Evita frases completas ou começar por um verbo, porque os ganchos
+> são construídos à volta dessa frase — isto aplica-se ao gerador por templates;
+> com `ANTHROPIC_API_KEY` configurada, a IA lida bem com qualquer formato.
+> Não precisas de repetir os ganchos "assinatura" do nicho de pets (estilo
+> "How your dog became a CEO.") — esses já rodam automaticamente todos os dias,
+> independentemente do tema que indicares.
 
 Vários de uma vez (a forma mais rápida de carregar um lote):
 ```bash
@@ -88,14 +96,22 @@ adicionares mais.
 ## A estratégia de copywriting usada
 
 Cada gancho segue uma fórmula diferente para não te limitares sempre ao mesmo
-estilo: curiosidade, dor→solução, prova social, contra-intuitivo, urgência,
-pergunta directa, lista/números, POV, storytime e comparação antes/depois.
+estilo: uma categoria "assinatura" (só no nicho de pets — personificação/choque
+financeiro, no tom de `"How your dog became a CEO."`), curiosidade, dor→solução,
+prova social, contra-intuitivo, urgência, pergunta directa, lista/números, POV,
+storytime e comparação antes/depois. Todos os dias recebes **3 ganchos
+alternativos** de categorias diferentes para escolheres o que preferires.
 
 Regras aplicadas em todas as legendas:
 - Gancho sempre na primeira linha — é o que decide se a pessoa fica ou passa à frente.
+- A legenda constrói curiosidade e convida explicitamente a ler até ao fim
+  (`"keep reading 👇"`, `"the full breakdown is below"`) em vez de vender logo
+  na primeira linha — o objectivo é que a pessoa abra e leia a descrição toda.
 - Uma única call-to-action por legenda (nunca pedir duas ações ao mesmo tempo).
-- Hashtags combinadas: genéricas de alto alcance + nicho de produtos digitais
-  + específicas da plataforma (`#fyp` no TikTok, `#reels` no Instagram).
+- Nenhum valor monetário específico é inventado como facto (sem falsos
+  "case studies" com números) — as promessas de valor são aspiracionais e gerais.
+- Hashtags combinadas: genéricas de alto alcance + nicho + específicas da
+  plataforma (`#fyp` no TikTok, `#reels` no Instagram).
 - O sistema evita repetir o mesmo gancho/CTA em publicações consecutivas.
 
 ---
