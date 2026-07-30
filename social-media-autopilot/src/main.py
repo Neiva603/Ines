@@ -49,9 +49,10 @@ def executar():
         )
         return
 
-    nicho = os.getenv("NICHO", "produtos digitais")
-    produto = os.getenv("NOME_PRODUTO", "o meu produto digital")
-    palavra_chave = os.getenv("PALAVRA_CHAVE_CTA", "QUERO")
+    idioma = os.getenv("IDIOMA", "en")
+    nicho = os.getenv("NICHO", "pet page monetization with digital products")
+    produto = os.getenv("NOME_PRODUTO", "digital products for pet page owners")
+    palavra_chave = os.getenv("PALAVRA_CHAVE_CTA", "PET")
     link_bio = os.getenv("LINK_BIO", "")
 
     pacote = gerar(
@@ -60,6 +61,7 @@ def executar():
         produto=produto,
         palavra_chave=palavra_chave,
         link_bio=link_bio,
+        idioma=idioma,
     )
     logger.info(f"Conteúdo gerado ({pacote['fonte']}) para o vídeo: {video['ficheiro']}")
 

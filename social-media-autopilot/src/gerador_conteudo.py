@@ -5,23 +5,26 @@ Combina duas fontes:
 1. Banco de fórmulas de copywriting testadas em vídeo curto (sempre disponível, sem custos).
 2. Geração assistida por IA (Claude) quando ANTHROPIC_API_KEY está configurada — usa o
    tema do vídeo do dia para personalizar ganchos e legendas.
+
+Suporta dois "packs" de conteúdo, escolhidos via idioma ("pt" ou "en"):
+- "pt": produtos digitais em geral, em português.
+- "en": nicho activo por omissão — monetizar páginas de animais de estimação
+  (pet pages) com produtos digitais, em inglês, com legendas construídas para
+  gerar curiosidade e levar a pessoa a querer ler a descrição toda.
 """
 
 import json
 import logging
 import os
 import random
-from collections import defaultdict
 
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Banco de ganchos (primeiras 1-3 palavras/segundos do vídeo — o que decide se
-# a pessoa continua a ver ou passa à frente). Cada categoria explora um gatilho
-# psicológico diferente para não caimos sempre no mesmo tipo de abertura.
+# PACK "pt" — produtos digitais em geral, português.
 # ---------------------------------------------------------------------------
 
-GANCHOS = {
+GANCHOS_PT = {
     "curiosidade": [
         "Ninguém te vai contar isto sobre {tema}.",
         "Descobri isto sobre {tema} e mudou tudo.",
@@ -48,7 +51,7 @@ GANCHOS = {
         "A forma como aprendeste {tema} está errada.",
         "Fazer menos é a chave para {tema}. Explico.",
         "O erro nº1 em {tema} é o que toda a gente faz.",
-        "{tema} não precisa ser complicado — só te venderam essa ideia.",
+        "Isto não precisa ser complicado — só te venderam essa ideia sobre {tema}.",
     ],
     "urgencia": [
         "Só vou explicar isto sobre {tema} uma vez.",
@@ -94,11 +97,7 @@ GANCHOS = {
     ],
 }
 
-# ---------------------------------------------------------------------------
-# Corpo da legenda — contexto curto a seguir ao gancho.
-# ---------------------------------------------------------------------------
-
-CORPOS = [
+CORPOS_PT = [
     "Neste vídeo mostro exactamente como aplicar isto em {tema}, passo a passo.",
     "É simples, rápido e qualquer pessoa consegue aplicar hoje em {tema}.",
     "Deixei tudo pronto para tu só teres de copiar o processo em {tema}.",
@@ -106,52 +105,200 @@ CORPOS = [
     "Não precisas de experiência nenhuma para começar com {tema}.",
 ]
 
-# ---------------------------------------------------------------------------
-# CTAs — sempre UM único pedido claro, nunca vários ao mesmo tempo.
-# ---------------------------------------------------------------------------
-
-CTAS_COMENTARIO = [
+CTAS_COMENTARIO_PT = [
     'Comenta "{palavra}" que te envio o link por DM. 📩',
     'Escreve "{palavra}" nos comentários e mando-te tudo. 📩',
     'Quer o link? Comenta "{palavra}" agora. 📩',
 ]
-
-CTAS_BIO = [
+CTAS_BIO_PT = [
     "Link na bio para garantires já o teu acesso. 🔗",
     "Todo o acesso está no link da bio. 🔗",
     "Vai ao link da bio antes que acabe. 🔗",
 ]
-
-CTAS_GUARDAR = [
+CTAS_GUARDAR_PT = [
     "Guarda este vídeo para não perderes quando precisares. 🔖",
     "Guarda já — vais precisar disto mais tarde. 🔖",
     "Envia isto a alguém que precisa de ver. ➡️",
 ]
 
-# ---------------------------------------------------------------------------
-# Hashtags — combinadas por alcance para maximizar descoberta sem parecer spam.
-# ---------------------------------------------------------------------------
-
-HASHTAGS_AMPLAS = [
+HASHTAGS_AMPLAS_PT = [
     "#produtodigital", "#infoprodutos", "#marketingdigital", "#empreendedorismo",
     "#negociodigital", "#dinheironainternet", "#trabalharemcasa", "#liberdadefinanceira",
     "#rendaextra", "#vendaonline", "#empreender", "#sucessoonline",
 ]
-
-HASHTAGS_NICHO = [
+HASHTAGS_NICHO_PT = [
     "#cursoonline", "#ebook", "#copywriting", "#vendasonline", "#marketingdigitalportugal",
     "#negocioonline", "#criadordeconteudo", "#estrategiadigital", "#infoproduto",
     "#marketingparaempreendedores", "#vendasdigitais", "#produtosdigitais",
 ]
+HASHTAGS_TIKTOK_EXTRA_PT = ["#fyp", "#foryoupage", "#viral", "#aprenderonline", "#dicasdenegocio"]
+HASHTAGS_INSTAGRAM_EXTRA_PT = ["#reels", "#instareels", "#reelsbrasil", "#reelsportugal", "#explorepage"]
 
-HASHTAGS_TIKTOK_EXTRA = ["#fyp", "#foryoupage", "#viral", "#aprenderonline", "#dicasdenegocio"]
-HASHTAGS_INSTAGRAM_EXTRA = ["#reels", "#instareels", "#reelsbrasil", "#reelsportugal", "#explorepage"]
-
-MELHORES_HORAS = [
+MELHORES_HORAS_PT = [
     "07h30–09h00 (antes de as pessoas começarem o dia)",
     "12h30–13h30 (hora de almoço)",
     "19h00–21h30 (pico de utilização à noite)",
 ]
+
+# ---------------------------------------------------------------------------
+# PACK "en" — nicho activo: monetizar páginas de pets com produtos digitais.
+# "assinatura" = ganchos independentes do tema, no tom exacto pedido
+# (personificação/CEO, choque financeiro) — os restantes usam {tema} (o
+# ângulo/produto do vídeo do dia, ex.: "training guides", "treat recipes").
+# ---------------------------------------------------------------------------
+
+GANCHOS_EN = {
+    "assinatura": [
+        "You don't need 10k followers for your dog to pay your rent.",
+        "How your dog became a CEO.",
+        "Your pet's Instagram is worth more than you think.",
+        "This dog has never had a job. He still pays his own vet bills.",
+        "Somewhere out there, a cat is out-earning its owner.",
+        "Nobody tells you a 3k-follower pet page can pay for itself.",
+    ],
+    "curiosidade": [
+        "Nobody talks about this part of {tema}.",
+        "I found out how pet pages are quietly making money from {tema}.",
+        "The part of {tema} every pet owner skips — and shouldn't.",
+        "This changed how I think about {tema} for pet pages.",
+        "Here's what nobody tells you about {tema}.",
+    ],
+    "dor_solucao": [
+        "Still posting {tema} for free? Here's what you're missing.",
+        "Tired of {tema} getting likes but no income?",
+        "This fixed the biggest mistake pet pages make with {tema}.",
+        "You don't need a huge following to make {tema} pay off.",
+        "Struggling to turn {tema} into actual income? This helps.",
+    ],
+    "prova_social": [
+        "Pet pages are already using {tema} to make real money.",
+        "This is the {tema} strategy small pet accounts keep using.",
+        "The exact way pet pages turn {tema} into income.",
+        "This is what separates pet pages that earn from the ones that don't.",
+        "More pet owners are quietly cashing in on {tema}.",
+    ],
+    "contraintuitivo": [
+        "Big following ≠ big income — just look at {tema}.",
+        "Forget growth hacks — small pet pages get paid through {tema}.",
+        "You've been thinking about {tema} backwards.",
+        "The follower-count myth that's stopping {tema} from earning.",
+        "You don't need 100k followers for {tema} to work.",
+    ],
+    "urgencia": [
+        "I'm only explaining {tema} like this once — save it.",
+        "This {tema} method won't stay this easy for long.",
+        "Before your next post, watch this about {tema}.",
+        "Every day you wait is a day your pet page isn't earning from {tema}.",
+        "Last time I break down {tema} for free.",
+    ],
+    "pergunta": [
+        "What if your pet's page could pay for {tema} itself?",
+        "Did you know pet pages are earning from {tema} under 5k followers?",
+        "Ever wonder how small pet accounts afford {tema}?",
+        "What if follower count isn't what decides {tema} income?",
+        "Could your pet's page actually turn {tema} into a business?",
+    ],
+    "lista": [
+        "3 things every pet page should know about {tema}.",
+        "2 steps to turn {tema} into income this month.",
+        "5 minutes to understand how pet pages profit from {tema}.",
+        "1 mistake keeping your pet page from earning off {tema}.",
+        "3 things no one tells you about {tema}.",
+    ],
+    "pov": [
+        "POV: your pet's page just started earning from {tema}.",
+        "For pet owners tired of doing {tema} for free.",
+        "Tag a pet owner who needs to see this about {tema}.",
+        "This is for the pet page stuck under 5k trying {tema}.",
+        "POV: {tema} just became your pet's side income.",
+    ],
+    "storytime": [
+        "A year ago this page made $0 from {tema}. Not anymore.",
+        "Nobody believed a pet page could earn from {tema}. Then this happened.",
+        "The day I realized {tema} could actually pay the bills.",
+        "This is the before and after of monetizing {tema}.",
+        "How one small pet page turned {tema} into real income.",
+    ],
+    "comparacao": [
+        "Free {tema} content vs. {tema} that pays for itself.",
+        "The difference between cute {tema} posts and profitable ones.",
+        "What changes when your pet page stops giving {tema} away for free.",
+        "A big following vs. a pet page actually earning from {tema} — not the same thing.",
+        "Compare: posting {tema} for likes vs. posting it to sell.",
+    ],
+}
+
+# Corpo da legenda — a parte que mantém o "loop" de curiosidade aberto e
+# convida explicitamente a ler a legenda até ao fim, em vez de vender logo.
+CORPOS_EN = [
+    "I broke the whole strategy down in the caption — worth the read. 👇",
+    "Keep reading, this gets good. There's a simple way to turn {tema} into income without needing a huge following. 👇",
+    "The full breakdown is below — simpler than most pet owners think.",
+    "Stick around, the caption explains exactly how {tema} can start paying for itself.",
+    "I laid out the whole thing underneath this post. Read it before you scroll past.",
+]
+
+CTAS_COMENTARIO_EN = [
+    'Comment "{palavra}" and I\'ll send you the exact guide. 📩',
+    'Type "{palavra}" below and I\'ll DM you the breakdown. 📩',
+    'Want the templates? Comment "{palavra}" now. 📩',
+]
+CTAS_BIO_EN = [
+    "Full guide is linked in my bio. 🔗",
+    "Grab it before it's gone — link in bio. 🔗",
+    "Everything you need is one tap away in my bio. 🔗",
+]
+CTAS_GUARDAR_EN = [
+    "Save this before your feed eats it. 🔖",
+    "Save this — you'll need it later. 🔖",
+    "Send this to a pet owner who needs to see it. ➡️",
+]
+
+HASHTAGS_AMPLAS_EN = [
+    "#digitalproducts", "#passiveincome", "#sidehustle", "#contentcreator",
+    "#onlinebusiness", "#makemoneyonline", "#smallbusinesstips", "#creatoreconomy",
+    "#digitalproduct", "#onlineincome",
+]
+HASHTAGS_NICHO_EN = [
+    "#petinfluencer", "#petsofinstagram", "#dogsofinstagram", "#catsofinstagram",
+    "#monetizeyourpet", "#petbusiness", "#petcontentcreator", "#petpage",
+    "#petmarketing", "#doginfluencer",
+]
+HASHTAGS_TIKTOK_EXTRA_EN = ["#fyp", "#foryoupage", "#viral", "#petsoftiktok", "#dogsoftiktok"]
+HASHTAGS_INSTAGRAM_EXTRA_EN = ["#reels", "#instareels", "#explorepage", "#petreels", "#reelsinstagram"]
+
+MELHORES_HORAS_EN = [
+    "7:30–9:00 AM (before people start their day)",
+    "12:30–1:30 PM (lunch break scroll)",
+    "7:00–9:30 PM (peak evening usage)",
+]
+
+_PACKS = {
+    "pt": {
+        "ganchos": GANCHOS_PT,
+        "corpos": CORPOS_PT,
+        "cta_comentario": CTAS_COMENTARIO_PT,
+        "cta_bio": CTAS_BIO_PT,
+        "cta_guardar": CTAS_GUARDAR_PT,
+        "hashtags_amplas": HASHTAGS_AMPLAS_PT,
+        "hashtags_nicho": HASHTAGS_NICHO_PT,
+        "hashtags_tiktok_extra": HASHTAGS_TIKTOK_EXTRA_PT,
+        "hashtags_instagram_extra": HASHTAGS_INSTAGRAM_EXTRA_PT,
+        "melhores_horas": MELHORES_HORAS_PT,
+    },
+    "en": {
+        "ganchos": GANCHOS_EN,
+        "corpos": CORPOS_EN,
+        "cta_comentario": CTAS_COMENTARIO_EN,
+        "cta_bio": CTAS_BIO_EN,
+        "cta_guardar": CTAS_GUARDAR_EN,
+        "hashtags_amplas": HASHTAGS_AMPLAS_EN,
+        "hashtags_nicho": HASHTAGS_NICHO_EN,
+        "hashtags_tiktok_extra": HASHTAGS_TIKTOK_EXTRA_EN,
+        "hashtags_instagram_extra": HASHTAGS_INSTAGRAM_EXTRA_EN,
+        "melhores_horas": MELHORES_HORAS_EN,
+    },
+}
 
 
 def _historico_path() -> str:
@@ -172,15 +319,15 @@ def _guardar_historico(data: dict):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def _escolher_sem_repetir(categoria: str, lista: list) -> tuple[str, int]:
-    """Escolhe um item da lista evitando repetir o último usado nessa categoria."""
+def _escolher_sem_repetir(chave: str, lista: list) -> tuple[str, int]:
+    """Escolhe um item da lista evitando repetir o último usado com esta chave."""
     data = _carregar_historico()
-    ultimo = data.get("ultimo_indice", {}).get(categoria, -1)
+    ultimo = data.get("ultimo_indice", {}).get(chave, -1)
 
     indices_possiveis = [i for i in range(len(lista)) if i != ultimo] or list(range(len(lista)))
     indice = random.choice(indices_possiveis)
 
-    data.setdefault("ultimo_indice", {})[categoria] = indice
+    data.setdefault("ultimo_indice", {})[chave] = indice
     _guardar_historico(data)
     return lista[indice], indice
 
@@ -189,48 +336,52 @@ def _preencher(template: str, tema: str) -> str:
     return template.format(tema=tema).strip()
 
 
-def gerar_ganchos(tema: str, quantidade: int = 3) -> list[dict]:
+def gerar_ganchos(tema: str, idioma: str = "en", quantidade: int = 3) -> list[dict]:
     """Gera N variações de gancho de categorias diferentes para o utilizador escolher."""
-    categorias = random.sample(list(GANCHOS.keys()), k=min(quantidade, len(GANCHOS)))
+    banco = _PACKS[idioma]["ganchos"]
+    categorias = random.sample(list(banco.keys()), k=min(quantidade, len(banco)))
     resultado = []
     for categoria in categorias:
-        template, _ = _escolher_sem_repetir(f"gancho_{categoria}", GANCHOS[categoria])
+        template, _ = _escolher_sem_repetir(f"{idioma}_gancho_{categoria}", banco[categoria])
         resultado.append({"categoria": categoria, "texto": _preencher(template, tema)})
     return resultado
 
 
-def _montar_hashtags(extra: list[str], total: int) -> list[str]:
-    amplas = random.sample(HASHTAGS_AMPLAS, k=min(5, len(HASHTAGS_AMPLAS)))
-    nicho = random.sample(HASHTAGS_NICHO, k=min(5, len(HASHTAGS_NICHO)))
-    extras = random.sample(extra, k=min(3, len(extra)))
-    tags = list(dict.fromkeys(amplas + nicho + extras))
+def _montar_hashtags(amplas: list[str], nicho: list[str], extra: list[str], total: int) -> list[str]:
+    escolhidas_amplas = random.sample(amplas, k=min(5, len(amplas)))
+    escolhidas_nicho = random.sample(nicho, k=min(5, len(nicho)))
+    escolhidas_extra = random.sample(extra, k=min(3, len(extra)))
+    tags = list(dict.fromkeys(escolhidas_amplas + escolhidas_nicho + escolhidas_extra))
     return tags[:total]
 
 
-def gerar_pacote(tema: str, palavra_chave: str = "QUERO", link_bio: str = "") -> dict:
+def gerar_pacote(tema: str, palavra_chave: str = "PET", link_bio: str = "", idioma: str = "en") -> dict:
     """
-    Gera o pacote completo do dia: ganchos, legendas para Instagram e TikTok,
+    Gera o pacote completo do dia: 3 ganchos, legendas para Instagram e TikTok,
     hashtags por plataforma, CTA e melhor hora sugerida para publicar.
     """
-    ganchos = gerar_ganchos(tema, quantidade=3)
+    pack = _PACKS[idioma]
+    ganchos = gerar_ganchos(tema, idioma=idioma, quantidade=3)
     gancho_principal = ganchos[0]["texto"]
 
-    corpo, _ = _escolher_sem_repetir("corpo", CORPOS)
+    corpo, _ = _escolher_sem_repetir(f"{idioma}_corpo", pack["corpos"])
     corpo = _preencher(corpo, tema)
 
     tipo_cta = random.choice(["comentario", "bio", "guardar"])
     if tipo_cta == "comentario":
-        cta_template, _ = _escolher_sem_repetir("cta_comentario", CTAS_COMENTARIO)
+        cta_template, _ = _escolher_sem_repetir(f"{idioma}_cta_comentario", pack["cta_comentario"])
         cta = cta_template.format(palavra=palavra_chave)
     elif tipo_cta == "bio" and link_bio:
-        cta_template, _ = _escolher_sem_repetir("cta_bio", CTAS_BIO)
-        cta = cta_template
+        cta, _ = _escolher_sem_repetir(f"{idioma}_cta_bio", pack["cta_bio"])
     else:
-        cta_template, _ = _escolher_sem_repetir("cta_guardar", CTAS_GUARDAR)
-        cta = cta_template
+        cta, _ = _escolher_sem_repetir(f"{idioma}_cta_guardar", pack["cta_guardar"])
 
-    hashtags_ig = _montar_hashtags(HASHTAGS_INSTAGRAM_EXTRA, total=20)
-    hashtags_tt = _montar_hashtags(HASHTAGS_TIKTOK_EXTRA, total=6)
+    hashtags_ig = _montar_hashtags(
+        pack["hashtags_amplas"], pack["hashtags_nicho"], pack["hashtags_instagram_extra"], total=15,
+    )
+    hashtags_tt = _montar_hashtags(
+        pack["hashtags_amplas"], pack["hashtags_nicho"], pack["hashtags_tiktok_extra"], total=6,
+    )
 
     legenda_instagram = f"{gancho_principal}\n\n{corpo}\n\n{cta}\n\n" + " ".join(hashtags_ig)
     legenda_tiktok = f"{gancho_principal} {cta}\n" + " ".join(hashtags_tt)
@@ -244,7 +395,7 @@ def gerar_pacote(tema: str, palavra_chave: str = "QUERO", link_bio: str = "") ->
         "hashtags_instagram": hashtags_ig,
         "hashtags_tiktok": hashtags_tt,
         "cta": cta,
-        "melhor_hora": random.choice(MELHORES_HORAS),
+        "melhor_hora": random.choice(pack["melhores_horas"]),
     }
 
 
@@ -253,7 +404,7 @@ def gerar_pacote(tema: str, palavra_chave: str = "QUERO", link_bio: str = "") ->
 # vídeo usando o modelo Claude, mantendo as regras de copywriting de vídeo curto.
 # ---------------------------------------------------------------------------
 
-SYSTEM_PROMPT_IA = """\
+SYSTEM_PROMPT_IA_PT = """\
 És um copywriter especialista em vídeos curtos (Reels/TikTok) para venda de produtos digitais \
 (cursos, ebooks, templates, mentorias) em português de Portugal.
 
@@ -277,8 +428,39 @@ dor, prova social, contra-intuição, urgência ou uma pergunta directa.
 }
 """
 
+SYSTEM_PROMPT_IA_EN = """\
+You are a short-form video copywriter specialising in the pet-account monetization niche — \
+helping pet Instagram/TikTok pages sell digital products (guides, templates, growth blueprints) \
+to other pet owners.
 
-def gerar_com_ia(tema: str, nicho: str, produto: str, palavra_chave: str = "QUERO") -> dict | None:
+Mandatory rules:
+- Hooks must be scroll-stopping in the first 1-3 seconds: use curiosity, a bold contrarian claim, \
+playful personification of the pet (e.g. "your dog became a CEO"), or a surprising financial angle. \
+Never generic. Match this tone exactly: "You don't need 10k followers for your dog to pay your rent." \
+/ "How your dog became a CEO."
+- Captions must build curiosity and make the reader want to open and finish reading the caption — \
+use an explicit open loop ("here's exactly how 👇", "keep reading"), never just a hard sell.
+- Never state specific unverified dollar amounts as fact (no fake case-study numbers). Keep value \
+claims aspirational and general ("could start earning", "without needing a huge following").
+- Use exactly ONE call-to-action per caption (never ask for two actions at once).
+- Instagram caption: hook + 2-4 short curiosity-driven lines + one CTA + hashtags. \
+TikTok caption: hook + CTA + a handful of hashtags, punchier and shorter.
+- Always respond in English.
+- Respond ONLY in valid JSON, no surrounding text, in this exact format:
+{
+  "ganchos_alternativos": ["hook 1", "hook 2", "hook 3"],
+  "legenda_instagram": "...",
+  "legenda_tiktok": "...",
+  "hashtags_instagram": ["#tag1", "#tag2", ...],
+  "hashtags_tiktok": ["#tag1", "#tag2", ...]
+}
+"""
+
+_SYSTEM_PROMPTS_IA = {"pt": SYSTEM_PROMPT_IA_PT, "en": SYSTEM_PROMPT_IA_EN}
+
+
+def gerar_com_ia(tema: str, nicho: str, produto: str, palavra_chave: str = "PET",
+                  idioma: str = "en") -> dict | None:
     """
     Usa a API da Anthropic para gerar um pacote personalizado ao tema do vídeo.
     Retorna None se ANTHROPIC_API_KEY não estiver configurada ou se houver erro
@@ -299,15 +481,15 @@ def gerar_com_ia(tema: str, nicho: str, produto: str, palavra_chave: str = "QUER
         resposta = client.messages.create(
             model="claude-sonnet-5",
             max_tokens=1024,
-            system=SYSTEM_PROMPT_IA,
+            system=_SYSTEM_PROMPTS_IA[idioma],
             messages=[{
                 "role": "user",
                 "content": (
-                    f"Tema do vídeo de hoje: {tema}\n"
-                    f"Nicho: {nicho}\n"
-                    f"Produto digital a vender: {produto}\n"
-                    f'Palavra-chave para comentar (se usares CTA de comentário): "{palavra_chave}"\n\n'
-                    "Gera o pacote de conteúdo em JSON conforme as regras."
+                    f"Today's video topic/angle: {tema}\n"
+                    f"Niche: {nicho}\n"
+                    f"Digital product being sold: {produto}\n"
+                    f'Keyword to comment (if you use a comment-based CTA): "{palavra_chave}"\n\n'
+                    "Generate the content package as JSON following the rules."
                 ),
             }],
         )
@@ -318,8 +500,8 @@ def gerar_com_ia(tema: str, nicho: str, produto: str, palavra_chave: str = "QUER
         pacote = json.loads(texto)
         pacote["tema"] = tema
         pacote["gancho_usado"] = pacote["ganchos_alternativos"][0]
-        pacote["cta"] = "Ver legenda gerada por IA."
-        pacote["melhor_hora"] = random.choice(MELHORES_HORAS)
+        pacote["cta"] = "See generated caption."
+        pacote["melhor_hora"] = random.choice(_PACKS[idioma]["melhores_horas"])
         pacote.setdefault("hashtags_instagram", [])
         pacote.setdefault("hashtags_tiktok", [])
         pacote["ganchos_alternativos"] = [
@@ -331,13 +513,13 @@ def gerar_com_ia(tema: str, nicho: str, produto: str, palavra_chave: str = "QUER
         return None
 
 
-def gerar(tema: str, nicho: str = "", produto: str = "", palavra_chave: str = "QUERO",
-          link_bio: str = "") -> dict:
+def gerar(tema: str, nicho: str = "", produto: str = "", palavra_chave: str = "PET",
+          link_bio: str = "", idioma: str = "en") -> dict:
     """Ponto de entrada único: tenta IA, cai para templates se indisponível."""
-    pacote = gerar_com_ia(tema, nicho, produto, palavra_chave)
+    pacote = gerar_com_ia(tema, nicho, produto, palavra_chave, idioma)
     if pacote:
         pacote["fonte"] = "ia"
         return pacote
-    pacote = gerar_pacote(tema, palavra_chave, link_bio)
+    pacote = gerar_pacote(tema, palavra_chave, link_bio, idioma)
     pacote["fonte"] = "templates"
     return pacote
